@@ -1,0 +1,52 @@
+{
+  "name": "ts-std-lib",
+  "version": "1.0.0",
+  "description": "A standard library for typescript",
+  "main": "./dist/index.js",
+  "engines": {
+    "node": "13.6.0",
+    "npm": "6.13.4"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "clean-dest -s ./src -d ./dist --file-map ./scripts/clean-dest --permanent --verbose",
+    "test": "c8 --all mocha dist/**/*.spec.js",
+    "lint": "eslint src/**/*.ts",
+    "watch-build": "tsc --watch",
+    "watch-clean": "nodemon --watch ./src -e ts --exec npm run-script clean",
+    "watch-lint": "nodemon --watch ./src -e ts --exec npm run-script lint",
+    "watch-test": "nodemon --watch ./dist -e js --exec npm run-script test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanSobey/ts-std-lib.git"
+  },
+  "author": "Sean Sobey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeanSobey/ts-std-lib/issues"
+  },
+  "homepage": "https://github.com/SeanSobey/ts-std-lib#readme",
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@schemastore/eslintrc": "0.0.5",
+    "@types/mocha": "^7.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "c8": "^7.0.1",
+    "clean-dest": "^1.3.0",
+    "del-cli": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-functional": "^3.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prefer-arrow-functions": "^3.0.1",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2",
+    "tslint": "^6.0.0",
+    "tslint-divid": "^1.3.0",
+    "typescript": "^3.7.5"
+  }
+}

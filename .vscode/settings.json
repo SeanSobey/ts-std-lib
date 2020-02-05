@@ -1,0 +1,30 @@
+{
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.quoteStyle": "single",
+  "files.associations": {
+    ".c8rc": "json",
+    ".dockerignore": "gitignore",
+    ".env.*": "dotenv",
+    ".nycrc": "json",
+    "Dockerfile.*": "dockerfile"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "coverage-gutters.coverageReportFileName": "./reports/test-coverage/lcov-report/index.html",
+  "coverage-gutters.lcovname": "./reports/test-coverage/lcov.info",
+  "vscode-coverage-highlighter.files": [
+    "./reports/test-coverage/coverage-final.json",
+    "./reports/test-coverage/lcov.info",
+    "./reports/test-coverage/cobertura-coverage.xml"
+  ],
+  "mochaExplorer.debuggerConfig": "Launch Tests",
+  "mochaExplorer.files": "dist/**/*.js",
+  "mochaExplorer.require": "source-map-support/register",
+  "cSpell.words": [
+    "botbuilder"
+  ]
+}
