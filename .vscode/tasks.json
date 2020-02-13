@@ -14,26 +14,15 @@
     },
     {
       "type": "npm",
-      "script": "watch-build",
-      "group": "build",
-      "isBackground": true,
-      "problemMatcher": "$tsc"
-    },
-    {
-      "type": "npm",
       "script": "test",
       "group": {
         "kind": "test",
         "isDefault": true
-      },
-      "problemMatcher": []
+      }
     },
     {
       "type": "npm",
-      "script": "watch-test",
-      "isBackground": true,
-      "group": "test",
-      "problemMatcher": []
+      "script": "clean"
     },
     {
       "type": "npm",
@@ -42,7 +31,26 @@
     },
     {
       "type": "npm",
+      "script": "watch-build",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": "$tsc"
+    },
+    {
+      "type": "npm",
+      "script": "watch-clean",
+      "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "watch-test",
+      "isBackground": true,
+      "group": "test"
+    },
+    {
+      "type": "npm",
       "script": "watch-lint",
+      "isBackground": true,
       "problemMatcher": "$eslint-stylish"
     }
   ]
