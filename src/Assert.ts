@@ -53,7 +53,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static defined<T>(value: T, messageOrError?: string | Error): void {
+	public defined<T>(value: T, messageOrError?: string | Error): void {
 
 		const result = value !== undefined;
 		if (!result) {
@@ -63,7 +63,7 @@ export class Assert {
 				expected: value,
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.defined,
+				stackStartFn: this.defined,
 			});
 		}
 	}
@@ -74,7 +74,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static undefined<T>(value: T, messageOrError?: string | Error): void {
+	public undefined<T>(value: T, messageOrError?: string | Error): void {
 
 		const result = value === undefined;
 		if (!result) {
@@ -84,7 +84,7 @@ export class Assert {
 				expected: undefined,
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.undefined,
+				stackStartFn: this.undefined,
 			});
 		}
 	}
@@ -95,7 +95,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static true(value: boolean, messageOrError?: string | Error): void {
+	public true(value: boolean, messageOrError?: string | Error): void {
 
 		const result = value === true;
 		if (!result) {
@@ -105,7 +105,7 @@ export class Assert {
 				expected: true,
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.true,
+				stackStartFn: this.true,
 			});
 		}
 	}
@@ -116,7 +116,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static truthy<T>(value: T, messageOrError?: string | Error): void {
+	public truthy<T>(value: T, messageOrError?: string | Error): void {
 
 		const result = !!value;
 		if (!result) {
@@ -126,7 +126,7 @@ export class Assert {
 				expected: 'truthy',
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.true,
+				stackStartFn: this.true,
 			});
 		}
 	}
@@ -137,7 +137,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static false(value: boolean, messageOrError?: string | Error): void {
+	public false(value: boolean, messageOrError?: string | Error): void {
 
 		const result = value === false;
 		if (!result) {
@@ -147,7 +147,7 @@ export class Assert {
 				expected: false,
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.false,
+				stackStartFn: this.false,
 			});
 		}
 	}
@@ -158,7 +158,7 @@ export class Assert {
 	 * @param value The value to test.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static falsy<T>(value: T, messageOrError?: string | Error): void {
+	public falsy<T>(value: T, messageOrError?: string | Error): void {
 
 		const result = !value;
 		if (!result) {
@@ -168,7 +168,7 @@ export class Assert {
 				expected: 'falsy',
 				operator: 'to be',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.false,
+				stackStartFn: this.false,
 			});
 		}
 	}
@@ -181,10 +181,10 @@ export class Assert {
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 * @param operator
 	 */
-	public static fail<T>(actual: T, expected: T, messageOrError?: string | Error, operator?: string): void {
+	public fail<T>(actual: T, expected: T, messageOrError?: string | Error, operator?: string): void {
 
 		// eslint-disable-next-line @typescript-eslint/unbound-method
-		return assert.fail(actual, expected, messageOrError, operator, Assert.fail);
+		return assert.fail(actual, expected, messageOrError, operator, this.fail);
 	}
 
 	/**
@@ -195,7 +195,7 @@ export class Assert {
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 * @param equalityComparer The equality comparer to use.
 	 */
-	public static equal<T>(actual: T, expected: T, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
+	public equal<T>(actual: T, expected: T, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
 	/**
 	 * Tests equality between the actual and expected parameters.
 	 *
@@ -203,11 +203,11 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param equalityComparer The equality comparer to use.
 	 */
-	public static equal<T>(actual: T, expected: T, equalityComparer?: IEqualityComparer<T>): void;
-	public static equal<T>(actual: T, expected: T, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
+	public equal<T>(actual: T, expected: T, equalityComparer?: IEqualityComparer<T>): void;
+	public equal<T>(actual: T, expected: T, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
 
-		const message = Assert.getMessage(errorOrMessageOrEqualityComparer);
-		const comparer = equalityComparer || Assert.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
+		const message = this.getMessage(errorOrMessageOrEqualityComparer);
+		const comparer = equalityComparer || this.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
 		const result = comparer.equals(actual, expected);
 		if (!result) {
 			throw new AssertionError({
@@ -216,7 +216,7 @@ export class Assert {
 				expected,
 				operator: 'equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.equal,
+				stackStartFn: this.equal,
 			});
 		}
 	}
@@ -229,7 +229,7 @@ export class Assert {
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 * @param equalityComparer The equality comparer to use.
 	 */
-	public static notEqual<T>(actual: T, expected: T, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
+	public notEqual<T>(actual: T, expected: T, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
 	/**
 	 * Tests inequality between the actual and expected parameters.
 	 *
@@ -237,11 +237,11 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param equalityComparer The equality comparer to use.
 	 */
-	public static notEqual<T>(actual: T, expected: T, equalityComparer?: IEqualityComparer<T>): void;
-	public static notEqual<T>(actual: T, expected: T, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
+	public notEqual<T>(actual: T, expected: T, equalityComparer?: IEqualityComparer<T>): void;
+	public notEqual<T>(actual: T, expected: T, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
 
-		const message = Assert.getMessage(errorOrMessageOrEqualityComparer);
-		const comparer = equalityComparer || Assert.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
+		const message = this.getMessage(errorOrMessageOrEqualityComparer);
+		const comparer = equalityComparer || this.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
 		const result = !comparer.equals(actual, expected);
 		if (!result) {
 			throw new AssertionError({
@@ -250,7 +250,7 @@ export class Assert {
 				expected,
 				operator: 'not equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.notEqual,
+				stackStartFn: this.notEqual,
 			});
 		}
 	}
@@ -262,9 +262,9 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static valueEqual<T>(actual: T, expected: T, errorOrMessage?: string | Error): void {
+	public valueEqual<T>(actual: T, expected: T, errorOrMessage?: string | Error): void {
 
-		const message = Assert.getMessage(errorOrMessage);
+		const message = this.getMessage(errorOrMessage);
 		const comparer = new ValueEqualityComparer();
 		const result = comparer.equals(actual, expected);
 		if (!result) {
@@ -274,7 +274,7 @@ export class Assert {
 				expected,
 				operator: 'value equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.notEqual,
+				stackStartFn: this.notEqual,
 			});
 		}
 	}
@@ -286,9 +286,9 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static notValueEqual<T>(actual: T, expected: T, errorOrMessage?: string | Error): void {
+	public notValueEqual<T>(actual: T, expected: T, errorOrMessage?: string | Error): void {
 
-		const message = Assert.getMessage(errorOrMessage);
+		const message = this.getMessage(errorOrMessage);
 		const comparer = new ValueEqualityComparer();
 		const result = !comparer.equals(actual, expected);
 		if (!result) {
@@ -298,7 +298,7 @@ export class Assert {
 				expected,
 				operator: 'not value equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.notEqual,
+				stackStartFn: this.notEqual,
 			});
 		}
 	}
@@ -310,19 +310,19 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static structuralEqual<T>(actual: T, expected: T, messageOrError?: string | Error): void {
+	public structuralEqual<T>(actual: T, expected: T, messageOrError?: string | Error): void {
 
 		const comparer = new DefaultEqualityComparer(false);
 		const result = comparer.equals(actual, expected);
 		if (!result) {
-			const message = Assert.getMessage(messageOrError);
+			const message = this.getMessage(messageOrError);
 			throw new AssertionError({
 				message,
 				actual,
 				expected,
 				operator: 'structural equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.structuralEqual,
+				stackStartFn: this.structuralEqual,
 			});
 		}
 	}
@@ -334,19 +334,19 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static notStructuralEqual<T>(actual: T, expected: T, messageOrError?: string | Error): void {
+	public notStructuralEqual<T>(actual: T, expected: T, messageOrError?: string | Error): void {
 
 		const comparer = new DefaultEqualityComparer(false);
 		const result = !comparer.equals(actual, expected);
 		if (!result) {
-			const message = Assert.getMessage(messageOrError);
+			const message = this.getMessage(messageOrError);
 			throw new AssertionError({
 				message,
 				actual,
 				expected,
 				operator: 'not structural equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.structuralEqual,
+				stackStartFn: this.structuralEqual,
 			});
 		}
 	}
@@ -358,9 +358,9 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static partialStructuralEqual<T extends object>(actual: T, expected: RecursivePartial<T>, messageOrError?: string | Error): void {
+	public partialStructuralEqual<T extends object>(actual: T, expected: RecursivePartial<T>, messageOrError?: string | Error): void {
 
-		const message = Assert.getMessage(messageOrError);
+		const message = this.getMessage(messageOrError);
 		const comparer = new DefaultEqualityComparer(false, true);
 		const result = comparer.equals(expected, actual);
 		if (!result) {
@@ -370,7 +370,7 @@ export class Assert {
 				expected,
 				operator: 'partial structural equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.partialStructuralEqual,
+				stackStartFn: this.partialStructuralEqual,
 			});
 		}
 	}
@@ -382,9 +382,9 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static notPartialStructuralEqual<T>(actual: T, expected: RecursivePartial<T>, messageOrError?: string | Error): void {
+	public notPartialStructuralEqual<T>(actual: T, expected: RecursivePartial<T>, messageOrError?: string | Error): void {
 
-		const message = Assert.getMessage(messageOrError);
+		const message = this.getMessage(messageOrError);
 		const comparer = new DefaultEqualityComparer(false, true);
 		const result = !comparer.equals(actual, expected);
 		if (!result) {
@@ -394,7 +394,7 @@ export class Assert {
 				expected,
 				operator: 'partial structural equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.partialStructuralEqual,
+				stackStartFn: this.partialStructuralEqual,
 			});
 		}
 	}
@@ -407,7 +407,7 @@ export class Assert {
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 * @param equalityComparer Optional equality comparer to use to compare items in the iterables.
 	 */
-	public static sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
+	public sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, messageOrError?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
 	/**
 	 * Tests sequential equality between the actual and expected iterables.
 	 *
@@ -415,11 +415,11 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param equalityComparer Optional equality comparer to use to compare items in the iterables.
 	 */
-	public static sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, equalityComparer?: IEqualityComparer<T>): void;
-	public static sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
+	public sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, equalityComparer?: IEqualityComparer<T>): void;
+	public sequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
 
-		const message = Assert.getMessage(errorOrMessageOrEqualityComparer);
-		const itemComparer = equalityComparer || Assert.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
+		const message = this.getMessage(errorOrMessageOrEqualityComparer);
+		const itemComparer = equalityComparer || this.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
 		const comparer = new IterableEqualityComparer(itemComparer);
 		const result = comparer.equals(actual, expected);
 		if (!result) {
@@ -429,7 +429,7 @@ export class Assert {
 				expected,
 				operator: 'sequence equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.notEqual,
+				stackStartFn: this.notEqual,
 			});
 		}
 	}
@@ -442,7 +442,7 @@ export class Assert {
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 * @param equalityComparer Optional equality comparer to use to compare items in the iterables.
 	 */
-	public static notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, message?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
+	public notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, message?: string | Error, equalityComparer?: IEqualityComparer<T>): void;
 	/**
 	 * Tests sequential equality between the actual and expected iterables.
 	 *
@@ -450,11 +450,11 @@ export class Assert {
 	 * @param expected The expected value.
 	 * @param equalityComparer Optional equality comparer to use to compare items in the iterables.
 	 */
-	public static notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, equalityComparer?: IEqualityComparer<T>): void;
-	public static notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
+	public notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, equalityComparer?: IEqualityComparer<T>): void;
+	public notSequenceEqual<T>(actual: Iterable<T>, expected: Iterable<T>, errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>, equalityComparer?: IEqualityComparer<T>): void {
 
-		const message = Assert.getMessage(errorOrMessageOrEqualityComparer);
-		const itemComparer = equalityComparer || Assert.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
+		const message = this.getMessage(errorOrMessageOrEqualityComparer);
+		const itemComparer = equalityComparer || this.getEqualityComparer(errorOrMessageOrEqualityComparer) || new DefaultEqualityComparer();
 		const comparer = new IterableEqualityComparer(itemComparer);
 		const result = !comparer.equals(actual, expected);
 		if (!result) {
@@ -464,7 +464,7 @@ export class Assert {
 				expected,
 				operator: 'not sequence equal to',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.notEqual,
+				stackStartFn: this.notEqual,
 			});
 		}
 	}
@@ -476,7 +476,7 @@ export class Assert {
 	 * @param error Validate error message using RegExp, custom error validation using predicate, instanceof using constructor or the Error message string.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static rejects<T>(asyncFn: (() => Promise<T>) | Promise<T>, error?: Error | RegExp | ErrorValidatorPredicate<T> | Constructor<Error> | string, messageOrError?: string | Error): Promise<void> {
+	public rejects<T>(asyncFn: (() => Promise<T>) | Promise<T>, error?: Error | RegExp | ErrorValidatorPredicate<T> | Constructor<Error> | string, messageOrError?: string | Error): Promise<void> {
 
 		if (typeof error === 'string') {
 			return assert.rejects(asyncFn, { message: error }, messageOrError);
@@ -491,7 +491,7 @@ export class Assert {
 	 * @param error Validate error message using RegExp, custom error validation using predicate, instanceof using constructor or the Error message string.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static doesNotReject<T>(asyncFn: (() => Promise<T>) | Promise<T>, error?: RegExp | ErrorValidatorPredicate<T>, messageOrError?: string | Error): Promise<void> {
+	public doesNotReject<T>(asyncFn: (() => Promise<T>) | Promise<T>, error?: RegExp | ErrorValidatorPredicate<T>, messageOrError?: string | Error): Promise<void> {
 
 		const defaultErrorPredicate: ErrorValidatorPredicate<T> = (value) => value instanceof Error;
 		return assert.doesNotReject(asyncFn, error || defaultErrorPredicate, messageOrError);
@@ -505,9 +505,9 @@ export class Assert {
 	 * @param errorMessage The error.msg to check for.
 	 * @param message
 	 */
-	public static rejectsError<T>(asyncFn: (() => Promise<T>) | Promise<T>, error: Constructor<Error>, errorMessage: string, message?: string): Promise<void> {
+	public rejectsError<T>(asyncFn: (() => Promise<T>) | Promise<T>, error: Constructor<Error>, errorMessage: string, message?: string): Promise<void> {
 
-		return Assert.rejects(asyncFn, (err) => err instanceof error && err.message === errorMessage, message);
+		return this.rejects(asyncFn, (err) => err instanceof error && err.message === errorMessage, message);
 	}
 
 	/**
@@ -518,9 +518,9 @@ export class Assert {
 	 * @param errorMessage The error.msg to check for.
 	 * @param message
 	 */
-	public static doesNotRejectError<T>(asyncFn: (() => Promise<T>) | Promise<T>, error: Constructor<Error>, errorMessage: string, message?: string): Promise<void> {
+	public doesNotRejectError<T>(asyncFn: (() => Promise<T>) | Promise<T>, error: Constructor<Error>, errorMessage: string, message?: string): Promise<void> {
 
-		return Assert.doesNotReject(asyncFn, (err) => err instanceof error && err.message === errorMessage, message);
+		return this.doesNotReject(asyncFn, (err) => err instanceof error && err.message === errorMessage, message);
 	}
 
 	/**
@@ -530,7 +530,7 @@ export class Assert {
 	 * @param error Validate error message using RegExp, custom error validation using predicate, instanceof using constructor or the Error message string.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static throws<T>(fn: () => any, error?: RegExp | ErrorValidatorPredicate<T> | ErrorValidatorMap | Constructor<Error> | string, messageOrError?: string | Error): void {
+	public throws<T>(fn: () => any, error?: RegExp | ErrorValidatorPredicate<T> | ErrorValidatorMap | Constructor<Error> | string, messageOrError?: string | Error): void {
 
 		if (typeof error === 'string') {
 			return assert.throws(fn, { message: error }, messageOrError);
@@ -545,7 +545,7 @@ export class Assert {
 	 * @param error Validate error message using RegExp, custom error validation using predicate or instanceof using constructor.
 	 * @param messageOrError Optional custom text or error to report in the case of failure.
 	 */
-	public static doesNotThrow<T>(fn: () => any, error?: RegExp | ErrorValidatorPredicate<T>, messageOrError?: string | Error): void {
+	public doesNotThrow<T>(fn: () => any, error?: RegExp | ErrorValidatorPredicate<T>, messageOrError?: string | Error): void {
 
 		const defaultErrorPredicate: ErrorValidatorPredicate<T> = (value) => Type.isInstanceOf(Error, value);
 		return assert.doesNotThrow(fn, error || defaultErrorPredicate, messageOrError);
@@ -559,9 +559,9 @@ export class Assert {
 	 * @param errorMessage The error.msg to check for.
 	 * @param message Optional custom text to report in the case of failure.
 	 */
-	public static throwsError(fn: () => any, error: Constructor<Error>, errorMessage: string, message?: string): void {
+	public throwsError(fn: () => any, error: Constructor<Error>, errorMessage: string, message?: string): void {
 
-		return Assert.throws(fn, (err) => Type.isInstanceOf<Error>(error, err) && err.message === errorMessage, message);
+		return this.throws(fn, (err) => Type.isInstanceOf<Error>(error, err) && err.message === errorMessage, message);
 	}
 
 	/**
@@ -572,9 +572,9 @@ export class Assert {
 	 * @param errorMessage The error.msg to check for.
 	 * @param message Optional custom text to report in the case of failure.
 	 */
-	public static doesNotThrowError(fn: () => any, error: Constructor<Error>, errorMessage: string, message?: string): void {
+	public doesNotThrowError(fn: () => any, error: Constructor<Error>, errorMessage: string, message?: string): void {
 
-		return Assert.doesNotThrow(fn, (err) => Type.isInstanceOf<Error>(error, err) && err.message === errorMessage, message);
+		return this.doesNotThrow(fn, (err) => Type.isInstanceOf<Error>(error, err) && err.message === errorMessage, message);
 	}
 
 	/**
@@ -583,7 +583,7 @@ export class Assert {
 	 * @param actual The actual value to evaluate.
 	 * @param expected The expected value.
 	 */
-	public static instanceOf<T>(actual: T, expected: Constructor<T>): void {
+	public instanceOf<T>(actual: T, expected: Constructor<T>): void {
 
 		const result = Type.isInstanceOf(expected, actual);
 		if (!result) {
@@ -592,12 +592,12 @@ export class Assert {
 				expected,
 				operator: 'instance of',
 				// eslint-disable-next-line @typescript-eslint/unbound-method
-				stackStartFn: Assert.instanceOf,
+				stackStartFn: this.instanceOf,
 			});
 		}
 	}
 
-	private static getMessage<T>(errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>): string | undefined {
+	private getMessage<T>(errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>): string | undefined {
 
 		if (Type.isUndefined(errorOrMessageOrEqualityComparer)) {
 			return undefined;
@@ -611,7 +611,7 @@ export class Assert {
 		return undefined;
 	}
 
-	private static getEqualityComparer<T>(errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>): IEqualityComparer<T> | undefined {
+	private getEqualityComparer<T>(errorOrMessageOrEqualityComparer?: string | Error | IEqualityComparer<T>): IEqualityComparer<T> | undefined {
 
 		if (Type.isUndefined(errorOrMessageOrEqualityComparer)) {
 			return undefined;

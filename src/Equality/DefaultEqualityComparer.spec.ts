@@ -4,6 +4,8 @@ import { DefaultEqualityComparer } from './DefaultEqualityComparer';
 import { IEquatable, equals } from './IEquatable';
 import { Assert } from '../Assert';
 
+const assert = new Assert();
+
 // SameValue -> ValueEqualityComparer
 // Structural -> StructuralEqualityComparer
 // Sequence -> IterableEqualityComparer
@@ -55,7 +57,7 @@ describe(DefaultEqualityComparer.name, () => {
 
 		it('is defined', () => {
 			const sut = createSUT();
-			Assert.defined(sut);
+			assert.defined(sut);
 		});
 	});
 
@@ -82,7 +84,7 @@ describe(DefaultEqualityComparer.name, () => {
 				const b = new TestEquatable();
 				const sut = createSUT();
 				sut.equals(a, b);
-				Assert.equal(a.calls[0], b);
+				assert.equal(a.calls[0], b);
 			});
 
 			it('returns true', () => {
@@ -90,7 +92,7 @@ describe(DefaultEqualityComparer.name, () => {
 				const b = new TestEquatable();
 				const sut = createSUT();
 				const actual = sut.equals(a, b);
-				Assert.true(actual);
+				assert.true(actual);
 			});
 		});
 
@@ -531,7 +533,7 @@ describe(DefaultEqualityComparer.name, () => {
 				it('returns ' + testCaseData.expected, () => {
 					const sut = createSUT();
 					const actual = sut.equals(testCaseData.a, testCaseData.b);
-					Assert.equal(actual, testCaseData.expected);
+					assert.equal(actual, testCaseData.expected);
 				});
 			});
 		});

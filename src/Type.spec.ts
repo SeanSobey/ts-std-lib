@@ -4,6 +4,8 @@ import { Assert } from './Assert';
 import { Type } from './Type';
 import { AbstractConstructor } from './Constructor';
 
+const assert = new Assert();
+
 class Example {}
 
 describe(Type.name, () => {
@@ -26,7 +28,7 @@ describe(Type.name, () => {
 
 					it('returns true', () => {
 						const actual = Type.isInstanceOf(constructor, instance);
-						Assert.true(actual);
+						assert.true(actual);
 					});
 				});
 			});

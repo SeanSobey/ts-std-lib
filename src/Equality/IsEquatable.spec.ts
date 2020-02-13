@@ -4,6 +4,8 @@ import { equals } from './IEquatable';
 import { isEquatable } from './IsEquatable';
 import { Assert } from '../Assert';
 
+const assert = new Assert();
+
 describe(isEquatable.name, () => {
 
 	describe('given null', () => {
@@ -13,7 +15,7 @@ describe(isEquatable.name, () => {
 		it('should return false', () => {
 
 			const actual = isEquatable(object);
-			Assert.false(actual);
+			assert.false(actual);
 		});
 	});
 
@@ -24,7 +26,7 @@ describe(isEquatable.name, () => {
 		it('should return false', () => {
 
 			const actual = isEquatable(object);
-			Assert.false(actual);
+			assert.false(actual);
 		});
 	});
 
@@ -35,7 +37,7 @@ describe(isEquatable.name, () => {
 		it('should return false', () => {
 
 			const actual = isEquatable(object);
-			Assert.false(actual);
+			assert.false(actual);
 		});
 	});
 
@@ -48,7 +50,7 @@ describe(isEquatable.name, () => {
 		it('should return false', () => {
 
 			const actual = isEquatable(object);
-			Assert.false(actual);
+			assert.false(actual);
 		});
 	});
 
@@ -61,7 +63,7 @@ describe(isEquatable.name, () => {
 		it('should return true', () => {
 
 			const actual = isEquatable(object);
-			Assert.true(actual);
+			assert.true(actual);
 		});
 	});
 });

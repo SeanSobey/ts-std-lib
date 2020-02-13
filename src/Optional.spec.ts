@@ -8,6 +8,8 @@ import { Assert } from './Assert';
 import { DefaultInspector } from './DefaultInspector';
 import { IInspector } from './IInspector';
 
+const assert = new Assert();
+
 describe(Optional.name, () => {
 
 	class Custom implements IEquatable<Custom> {
@@ -32,7 +34,7 @@ describe(Optional.name, () => {
 
 			it('is defined', () => {
 				const sut = new Optional<number>(undefined);
-				Assert.defined(sut);
+				assert.defined(sut);
 			});
 		});
 
@@ -40,7 +42,7 @@ describe(Optional.name, () => {
 
 			it('is defined', () => {
 				const sut = new Optional<number>(null);
-				Assert.defined(sut);
+				assert.defined(sut);
 			});
 		});
 
@@ -48,7 +50,7 @@ describe(Optional.name, () => {
 
 			it('is defined', () => {
 				const sut = new Optional<number>(1);
-				Assert.defined(sut);
+				assert.defined(sut);
 			});
 		});
 
@@ -56,7 +58,7 @@ describe(Optional.name, () => {
 
 			it('is defined', () => {
 				const sut = new Optional<Custom>(new Custom());
-				Assert.defined(sut);
+				assert.defined(sut);
 			});
 		});
 	});
@@ -72,7 +74,7 @@ describe(Optional.name, () => {
 				it('is true', () => {
 					const sut = new Optional<number>(undefined);
 					const actual = sut[equals](other);
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -81,7 +83,7 @@ describe(Optional.name, () => {
 				it('is true', () => {
 					const sut = new Optional<number>(null);
 					const actual = sut[equals](other);
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -90,7 +92,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<number>(1);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 		});
@@ -104,7 +106,7 @@ describe(Optional.name, () => {
 				it('is true', () => {
 					const sut = new Optional<number>(undefined);
 					const actual = sut[equals](other);
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -113,7 +115,7 @@ describe(Optional.name, () => {
 				it('is true', () => {
 					const sut = new Optional<number>(null);
 					const actual = sut[equals](other);
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -122,7 +124,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<number>(1);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 		});
@@ -136,7 +138,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<number>(undefined);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -145,7 +147,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<number>(null);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -156,7 +158,7 @@ describe(Optional.name, () => {
 					it('is true', () => {
 						const sut = new Optional<number>(1);
 						const actual = sut[equals](other);
-						Assert.true(actual);
+						assert.true(actual);
 					});
 				});
 
@@ -165,7 +167,7 @@ describe(Optional.name, () => {
 					it('is false', () => {
 						const sut = new Optional<number>(2);
 						const actual = sut[equals](other);
-						Assert.false(actual);
+						assert.false(actual);
 					});
 				});
 			});
@@ -180,7 +182,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<Custom>(undefined);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -189,7 +191,7 @@ describe(Optional.name, () => {
 				it('is false', () => {
 					const sut = new Optional<Custom>(null);
 					const actual = sut[equals](other);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -200,7 +202,7 @@ describe(Optional.name, () => {
 					it('is true', () => {
 						const sut = new Optional<Custom>(new Custom(1), new CustomEqualityComparer());
 						const actual = sut[equals](other);
-						Assert.true(actual);
+						assert.true(actual);
 					});
 				});
 
@@ -209,7 +211,7 @@ describe(Optional.name, () => {
 					it('is false', () => {
 						const sut = new Optional<Custom>(new Custom(2), new CustomEqualityComparer());
 						const actual = sut[equals](other);
-						Assert.false(actual);
+						assert.false(actual);
 					});
 				});
 			});
@@ -224,7 +226,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>();
 				const actual = sut[inspect]();
 				const expected = '<Optional> [empty]';
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -234,7 +236,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const actual = sut[inspect]();
 				const expected = '<Optional> [empty]';
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -244,7 +246,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(42);
 				const actual = sut[inspect]();
 				const expected = '<Optional> 42';
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -259,7 +261,7 @@ describe(Optional.name, () => {
 					const sut = new Optional<Custom>(value);
 					const actual = sut[inspect]();
 					const expected = '<Optional> ' + inspector.inspect(value);
-					Assert.equal(actual, expected);
+					assert.equal(actual, expected);
 				});
 			});
 
@@ -278,7 +280,7 @@ describe(Optional.name, () => {
 					const sut = new Optional<Custom>(value, undefined, inspectorMock.object);
 					const actual = sut[inspect]();
 					const expected = '<Optional> ' + inspectValue;
-					Assert.equal(actual, expected);
+					assert.equal(actual, expected);
 				});
 			});
 		});
@@ -291,7 +293,7 @@ describe(Optional.name, () => {
 			it('is false', () => {
 				const sut = new Optional<number>(undefined);
 				const actual = sut.isPresent();
-				Assert.false(actual);
+				assert.false(actual);
 			});
 		});
 
@@ -300,7 +302,7 @@ describe(Optional.name, () => {
 			it('is false', () => {
 				const sut = new Optional<number>(null);
 				const actual = sut.isPresent();
-				Assert.false(actual);
+				assert.false(actual);
 			});
 		});
 
@@ -309,7 +311,7 @@ describe(Optional.name, () => {
 			it('is true', () => {
 				const sut = new Optional<number>(1);
 				const actual = sut.isPresent();
-				Assert.true(actual);
+				assert.true(actual);
 			});
 		});
 
@@ -318,7 +320,7 @@ describe(Optional.name, () => {
 			it('is true', () => {
 				const sut = new Optional<Custom>(new Custom());
 				const actual = sut.isPresent();
-				Assert.true(actual);
+				assert.true(actual);
 			});
 		});
 	});
@@ -495,7 +497,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(value);
 				const actual = sut.or(supplierNumberMock.object);
 				const expected = numberOptional;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -513,7 +515,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(value);
 				const actual = sut.or(supplierNumberMock.object);
 				const expected = numberOptional;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -531,7 +533,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(value);
 				const actual = sut.or(supplierNumberMock.object);
 				const expected = sut;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -549,7 +551,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(value);
 				const actual = sut.or(supplierCustomMock.object);
 				const expected = sut;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 	});
@@ -564,7 +566,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const actual = sut.orElse(defaultValue);
 				const expected = defaultValue;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -576,7 +578,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const actual = sut.orElse(defaultValue);
 				const expected = defaultValue;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -589,7 +591,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(value);
 				const actual = sut.orElse(defaultValue);
 				const expected = value;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -602,7 +604,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom(1));
 				const actual = sut.orElse(defaultValue);
 				const expected = value;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 	});
@@ -673,12 +675,12 @@ describe(Optional.name, () => {
 			it('throws error', () => {
 				const sut = new Optional<number>(undefined);
 				const exceptionSupplier = () => customError;
-				Assert.throws(() => sut.orElseThrow(exceptionSupplier), customError);
+				assert.throws(() => sut.orElseThrow(exceptionSupplier), customError);
 			});
 
 			it('does invoke callback', () => {
 				const sut = new Optional<number>(undefined);
-				Assert.throws(() => sut.orElseThrow(callbackMock.object), () => true);
+				assert.throws(() => sut.orElseThrow(callbackMock.object), () => true);
 				callbackMock.verify((mock) => mock(), Times.once());
 			});
 		});
@@ -688,12 +690,12 @@ describe(Optional.name, () => {
 			it('throws error', () => {
 				const sut = new Optional<number>(null);
 				const exceptionSupplier = () => customError;
-				Assert.throws(() => sut.orElseThrow(exceptionSupplier), customError);
+				assert.throws(() => sut.orElseThrow(exceptionSupplier), customError);
 			});
 
 			it('does invoke callback', () => {
 				const sut = new Optional<number>(null);
-				Assert.throws(() => sut.orElseThrow(callbackMock.object), () => true);
+				assert.throws(() => sut.orElseThrow(callbackMock.object), () => true);
 				callbackMock.verify((mock) => mock(), Times.once());
 			});
 		});
@@ -725,7 +727,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const actual = sut.orUndefined();
 				const expected = undefined;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -735,7 +737,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const actual = sut.orUndefined();
 				const expected = undefined;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -745,7 +747,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(1);
 				const actual = sut.orUndefined();
 				const expected = 1;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -755,7 +757,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom());
 				const actual = sut.orUndefined();
 				const expected = new Custom();
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 	});
@@ -768,7 +770,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const actual = sut.orNull();
 				const expected = null;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -778,7 +780,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const actual = sut.orNull();
 				const expected = null;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -788,7 +790,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(1);
 				const actual = sut.orUndefined();
 				const expected = 1;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -798,7 +800,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom());
 				const actual = sut.orUndefined();
 				const expected = new Custom();
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 	});
@@ -809,7 +811,7 @@ describe(Optional.name, () => {
 
 			it('throws error', () => {
 				const sut = new Optional<number>(undefined);
-				Assert.throws(() => sut.get(), OptionalValueNotSetError);
+				assert.throws(() => sut.get(), OptionalValueNotSetError);
 			});
 		});
 
@@ -817,7 +819,7 @@ describe(Optional.name, () => {
 
 			it('throws error', () => {
 				const sut = new Optional<number>(null);
-				Assert.throws(() => sut.get(), OptionalValueNotSetError);
+				assert.throws(() => sut.get(), OptionalValueNotSetError);
 			});
 		});
 
@@ -828,7 +830,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(value);
 				const actual = sut.get();
 				const expected = value;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 
@@ -839,7 +841,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(value);
 				const actual = sut.get();
 				const expected = value;
-				Assert.equal(actual, expected);
+				assert.equal(actual, expected);
 			});
 		});
 	});
@@ -863,7 +865,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const fn = (_value: number) => true;
 				const actual = sut.filter(fn)[equals](new Optional());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -879,7 +881,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const fn = (_value: number) => true;
 				const actual = sut.filter(fn)[equals](new Optional());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -904,7 +906,7 @@ describe(Optional.name, () => {
 				it('returns optional with value', () => {
 					const sut = new Optional<number>(1);
 					const actual = sut.filter(fn)[equals](new Optional<number>(1));
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -915,7 +917,7 @@ describe(Optional.name, () => {
 				it('returns empty optional', () => {
 					const sut = new Optional<number>(1);
 					const actual = sut.filter(fn)[equals](new Optional<number>());
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 		});
@@ -926,7 +928,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom());
 				const fn = (_value: Custom) => 'some-string';
 				const actual = sut.map(fn)[equals](new Optional('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does call spy', () => {
@@ -942,7 +944,7 @@ describe(Optional.name, () => {
 				it('returns optional with value', () => {
 					const sut = new Optional<Custom>(new Custom(1), new CustomEqualityComparer());
 					const actual = sut.filter(fn)[equals](new Optional<Custom>(new Custom(1)));
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -953,7 +955,7 @@ describe(Optional.name, () => {
 				it('returns empty optional', () => {
 					const sut = new Optional<Custom>(new Custom(1));
 					const actual = sut.filter(fn)[equals](new Optional<Custom>());
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 		});
@@ -978,7 +980,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const fn = (_value: number) => 'some-string';
 				const actual = sut.map(fn)[equals](new Optional());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -994,7 +996,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const fn = (_value: number) => 'some-string';
 				const actual = sut.map(fn)[equals](new Optional());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -1010,7 +1012,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(1);
 				const fn = (_value: number) => 'some-string';
 				const actual = sut.map(fn)[equals](new Optional('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does call spy', () => {
@@ -1026,7 +1028,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom());
 				const fn = (_value: Custom) => 'some-string';
 				const actual = sut.map(fn)[equals](new Optional('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does call spy', () => {
@@ -1056,7 +1058,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(undefined);
 				const fn = (_value: number) => new Optional<string>('some-string');
 				const actual = sut.chain(fn)[equals](new Optional<string>());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -1072,7 +1074,7 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(null);
 				const fn = (_value: number) => new Optional<string>('some-string');
 				const actual = sut.chain(fn)[equals](new Optional());
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does not call spy', () => {
@@ -1088,14 +1090,14 @@ describe(Optional.name, () => {
 				const sut = new Optional<number>(1);
 				const fn = (_value: number) => new Optional<string>('some-string');
 				const actual = sut.chain(fn)[equals](new Optional<string>('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('returns optional with value', () => {
 				const sut = new Optional<number>(1);
 				const fn = (_value: number) => 'some-string';
 				const actual = sut.chain(fn)[equals](new Optional<string>('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does call spy', () => {
@@ -1111,14 +1113,14 @@ describe(Optional.name, () => {
 				const sut = new Optional<Custom>(new Custom());
 				const fn = (_value: Custom) => new Optional<string>('some-string');
 				const actual = sut.chain(fn)[equals](new Optional<string>('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('returns optional with value', () => {
 				const sut = new Optional<Custom>(new Custom());
 				const fn = (_value: Custom) => 'some-string';
 				const actual = sut.chain(fn)[equals](new Optional<string>('some-string'));
-				Assert.true(actual);
+				assert.true(actual);
 			});
 
 			it('does call spy', () => {

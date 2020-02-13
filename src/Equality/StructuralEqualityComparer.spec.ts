@@ -4,6 +4,8 @@ import { StructuralEqualityComparer } from './StructuralEqualityComparer';
 import { ValueEqualityComparer } from './ValueEqualityComparer';
 import { Assert } from '../Assert';
 
+const assert = new Assert();
+
 describe(StructuralEqualityComparer.name, () => {
 
 	function createSUT(partial: boolean): StructuralEqualityComparer<object> {
@@ -16,7 +18,7 @@ describe(StructuralEqualityComparer.name, () => {
 
 		it('is defined', () => {
 			const sut = createSUT(true);
-			Assert.defined(sut);
+			assert.defined(sut);
 		});
 	});
 
@@ -40,7 +42,7 @@ describe(StructuralEqualityComparer.name, () => {
 				it('returns expected true', () => {
 					const sut = createSUT(partial);
 					const actual = sut.equals(a, b);
-					Assert.true(actual);
+					assert.true(actual);
 				});
 			});
 
@@ -57,7 +59,7 @@ describe(StructuralEqualityComparer.name, () => {
 				it('returns false', () => {
 					const sut = createSUT(partial);
 					const actual = sut.equals(a, b);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -74,7 +76,7 @@ describe(StructuralEqualityComparer.name, () => {
 				it('returns false', () => {
 					const sut = createSUT(partial);
 					const actual = sut.equals(a, b);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -92,7 +94,7 @@ describe(StructuralEqualityComparer.name, () => {
 				it('returns false', () => {
 					const sut = createSUT(partial);
 					const actual = sut.equals(a, b);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 
@@ -110,7 +112,7 @@ describe(StructuralEqualityComparer.name, () => {
 				it('returns false', () => {
 					const sut = createSUT(partial);
 					const actual = sut.equals(a, b);
-					Assert.false(actual);
+					assert.false(actual);
 				});
 			});
 		});
@@ -134,7 +136,7 @@ describe(StructuralEqualityComparer.name, () => {
 			it('returns true', () => {
 				const sut = createSUT(partial);
 				const actual = sut.equals(a, b);
-				Assert.true(actual);
+				assert.true(actual);
 			});
 		});
 
@@ -151,7 +153,7 @@ describe(StructuralEqualityComparer.name, () => {
 			it('returns true', () => {
 				const sut = createSUT(partial);
 				const actual = sut.equals(a, b);
-				Assert.true(actual);
+				assert.true(actual);
 			});
 		});
 
@@ -168,7 +170,7 @@ describe(StructuralEqualityComparer.name, () => {
 			it('returns false', () => {
 				const sut = createSUT(partial);
 				const actual = sut.equals(a, b);
-				Assert.false(actual);
+				assert.false(actual);
 			});
 		});
 
@@ -186,7 +188,7 @@ describe(StructuralEqualityComparer.name, () => {
 			it('returns false', () => {
 				const sut = createSUT(partial);
 				const actual = sut.equals(a, b);
-				Assert.false(actual);
+				assert.false(actual);
 			});
 		});
 
@@ -204,7 +206,7 @@ describe(StructuralEqualityComparer.name, () => {
 			it('returns false', () => {
 				const sut = createSUT(partial);
 				const actual = sut.equals(a, b);
-				Assert.false(actual);
+				assert.false(actual);
 			});
 		});
 	});
