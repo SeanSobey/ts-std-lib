@@ -4,7 +4,7 @@
   "description": "A standard library for typescript",
   "main": "./dist/index",
   "engines": {
-    "node": "13.6.0",
+    "node": "13.6.1",
     "npm": "6.13.4"
   },
   "scripts": {
