@@ -74,6 +74,7 @@ module.exports = {
 				]
 			}
 		],
+		'no-dupe-class-members': 'off'
 	},
 	overrides: [
 		{
@@ -115,6 +116,7 @@ module.exports = {
 				'no-unsafe-finally': 'warn',
 				'no-unused-expressions': 'warn',
 				'no-unused-labels': 'warn',
+				"no-unused-vars": "off",
 				'no-var': 'warn',
 				'object-shorthand': 'warn',
 				'one-var': [
@@ -150,6 +152,9 @@ module.exports = {
 				'@typescript-eslint/class-name-casing': 'warn',
 				'@typescript-eslint/consistent-type-assertions': 'warn',
 				'@typescript-eslint/consistent-type-definitions': 'off',
+				'@typescript-eslint/explicit-function-return-type': ['warn', {
+					'allowExpressions': true
+				}],
 				'@typescript-eslint/explicit-member-accessibility': [
 					'warn',
 					{
@@ -182,6 +187,9 @@ module.exports = {
 						}
 					}
 				],
+				'@typescript-eslint/no-unused-vars': ['warn', {
+					'argsIgnorePattern': '^_'
+				}],
 				'@typescript-eslint/member-ordering': 'warn',
 				'@typescript-eslint/no-empty-function': 'warn',
 				'@typescript-eslint/no-empty-interface': 'off',

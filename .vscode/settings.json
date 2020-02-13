@@ -25,6 +25,7 @@
   "mochaExplorer.files": "dist/**/*.js",
   "mochaExplorer.require": "source-map-support/register",
   "cSpell.words": [
-    "botbuilder"
-  ]
+	"Serializable",
+	"botbuilder"
+]
 }

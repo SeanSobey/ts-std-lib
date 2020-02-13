@@ -45,9 +45,7 @@
     "max-line-length": [
       false
     ],
-    "max-classes-per-file": [
-      false
-    ],
+    "max-classes-per-file": false,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
@@ -133,16 +131,8 @@
       "check-separator",
       "check-type"
     ],
-    // :: Functional style rules ::
-    //"no-this": true,
-    //"no-class": true,
-    //"no-mixed-interface": true,
-    //"no-expression-statement": true,
-    //https://github.com/jonaskello/tslint-divid
-    // :: Other rules ::
     "no-arguments": true,
     "no-label": true,
-    //"no-semicolon-interface": true,
     "import-containment": [
       true,
       {
