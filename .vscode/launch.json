@@ -17,6 +17,7 @@
       "args": [
         "${workspaceRoot}\\dist\\**\\*.spec.js"
       ],
+      "preLaunchTask": "nvm",
       "timeout": 50000,
       "port": 27562,
       "sourceMaps": true,
