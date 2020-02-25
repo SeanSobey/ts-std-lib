@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A standard library for typescript",
   "main": "./dist/index",
+  "types": "./dist/index.d.ts",
   "engines": {
     "node": "13.6.1",
     "npm": "6.13.4"
