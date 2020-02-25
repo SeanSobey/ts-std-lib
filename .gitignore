@@ -109,11 +109,5 @@ typings/
 /reports/**
 !/reports/index.html
 
-# code coverage temp
-/coverage/**
-
-# dist
-/dist/**
-
-# typescript build info
-.tsbuildinfo
+#dist
+dist/**
