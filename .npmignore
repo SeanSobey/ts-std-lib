@@ -21,6 +21,7 @@ tslint.json
 .nvmrc
 .tsbuildinfo
 .mocharc.js
+.eslintrc.js
 
 src/**/*.spec.*
 !dist/**
