@@ -4,11 +4,11 @@ import { Assert } from './Assert';
 import { Type } from './Type';
 import { AbstractConstructor } from './Constructor';
 
-const assert = new Assert();
-
 class Example {}
 
 describe(Type.name, () => {
+
+	const assert = new Assert();
 
 	describe(Type.isInstanceOf.name, () => {
 

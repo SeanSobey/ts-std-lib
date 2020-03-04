@@ -4,9 +4,9 @@ import { StructuralEqualityComparer } from './StructuralEqualityComparer';
 import { ValueEqualityComparer } from './ValueEqualityComparer';
 import { Assert } from '../Assert';
 
-const assert = new Assert();
-
 describe(StructuralEqualityComparer.name, () => {
+
+	const assert = new Assert();
 
 	function createSUT(partial: boolean): StructuralEqualityComparer<object> {
 

@@ -8,9 +8,9 @@ import { Assert } from './Assert';
 import { DefaultInspector } from './DefaultInspector';
 import { IInspector } from './IInspector';
 
-const assert = new Assert();
-
 describe(Optional.name, () => {
+
+	const assert = new Assert();
 
 	class Custom implements IEquatable<Custom> {
 		private readonly _value: number;

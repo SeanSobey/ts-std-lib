@@ -4,9 +4,9 @@ import { equals } from './IEquatable';
 import { isEquatable } from './IsEquatable';
 import { Assert } from '../Assert';
 
-const assert = new Assert();
-
 describe(isEquatable.name, () => {
+
+	const assert = new Assert();
 
 	describe('given null', () => {
 

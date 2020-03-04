@@ -4,8 +4,6 @@ import { DefaultEqualityComparer } from './DefaultEqualityComparer';
 import { IEquatable, equals } from './IEquatable';
 import { Assert } from '../Assert';
 
-const assert = new Assert();
-
 // SameValue -> ValueEqualityComparer
 // Structural -> StructuralEqualityComparer
 // Sequence -> IterableEqualityComparer
@@ -47,6 +45,8 @@ const assert = new Assert();
 // Buffer					Sequence
 
 describe(DefaultEqualityComparer.name, () => {
+
+	const assert = new Assert();
 
 	function createSUT(): DefaultEqualityComparer {
 
