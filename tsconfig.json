@@ -9,6 +9,9 @@
     "incremental": true,
     "tsBuildInfoFile": "./.tsbuildinfo",
     "declaration": true,
+    "lib": [
+      "es2017"
+    ],
 
     /* Strict Type-Checking Options */
     "strict": true,
