@@ -7,4 +7,8 @@
 module.exports = {
 	allowUncaught: false,
 	bail: false,
+	require: [
+		'source-map-support/register',
+	],
+	timeout: 50000,
 };

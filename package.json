@@ -30,6 +30,7 @@
   "homepage": "https://github.com/SeanSobey/ts-std-lib#readme",
   "dependencies": {
     "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.16",
     "tslib": "^1.11.1"
   },
   "devDependencies": {
