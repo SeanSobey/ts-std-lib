@@ -1,4 +1,5 @@
 export * from './DefaultEqualityComparer';
+export * from './EqualTo';
 export * from './IEqualityComparer';
 export * from './IEquatable';
 export * from './IsEquatable';
