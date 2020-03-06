@@ -69,6 +69,11 @@ export class Type {
 		return typeof value === 'number';
 	}
 
+	public static isBigInt(value: any): value is BigInt {
+
+		return typeof value === 'bigint';
+	}
+
 	public static isString(object: any): object is string {
 
 		return typeof object === 'string';
@@ -112,7 +117,7 @@ export class Type {
 
 	public static isIterable(object: any): object is Iterable<any> {
 
-		if (typeof object !== 'object' || object === null ) {
+		if (typeof object !== 'object' || object === null) {
 			return false;
 		}
 		return Symbol.iterator in object && typeof object[Symbol.iterator] === 'function';
@@ -120,7 +125,7 @@ export class Type {
 
 	public static isAsyncIterable(object: any): object is AsyncIterable<any> {
 
-		if (typeof object !== 'object' || object === null ) {
+		if (typeof object !== 'object' || object === null) {
 			return false;
 		}
 		return Symbol.asyncIterator in object && typeof (object)[Symbol.asyncIterator] === 'function';
@@ -133,15 +138,15 @@ export class Type {
 
 	public static isArrayLike(object: unknown): object is ArrayLike<any> {
 
-		if (typeof object !== 'object' || object === null ) {
+		if (typeof object !== 'object' || object === null) {
 			return false;
 		}
-		return 'length' in object && (object as any).length === 'number';
+		return 'length' in object && typeof (object as any).length === 'number';
 	}
 
 	public static isObject(object: unknown): object is NonNullable<object> {
 
-		if (typeof object !== 'object' || object === null ) {
+		if (typeof object !== 'object' || object === null || Array.isArray(object) || types.isRegExp(object)) {
 			return false;
 		}
 		return true;
@@ -150,7 +155,7 @@ export class Type {
 	// tslint:disable-next-line:ban-types
 	public static isClass(object: unknown): object is object {
 
-		if (typeof object !== 'object' || object === null ) {
+		if (typeof object !== 'object' || object === null || Array.isArray(object) || types.isRegExp(object)) {
 			return false;
 		}
 		return object.constructor !== Object.prototype.constructor; // TODO: Is this the best way to test is a class?
@@ -167,14 +172,30 @@ export class Type {
 		return (object !== Object(object));
 	}
 
-	public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T>): object is T {
+
+	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, typeof object[keyof T]>): object is T {
+	public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, PrimitiveType>): object is T {
+	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | { readonly [key: keyof T]: string }): object is T {
+	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T>): object is T {
 
 		if (typeof object !== 'object' || object === null) {
 			return false;
 		}
-		return expectedKeys.every((expectedFunctionKey) =>
-			expectedFunctionKey in object
-			&& typeof (object as any)[expectedFunctionKey] === 'function'
-		);
+		const expectedKeyMap: ReadonlyMap<keyof T, PrimitiveType | '*'> = Type.isArray(expectedKeys)
+			? new Map(expectedKeys.map((expectedKey) => [expectedKey, '*']))
+			: expectedKeys;
+		// 	: new Map(Object.entries(expectedKeys));
+		for (const [expectedKey, expectedKeyType] of expectedKeyMap) {
+			if (!(expectedKey in object)) {
+				return false;
+			}
+			if (expectedKeyType === '*') {
+				continue;
+			}
+			if (typeof (object as any)[expectedKey] !== expectedKeyType) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

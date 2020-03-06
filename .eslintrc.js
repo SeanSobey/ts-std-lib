@@ -4,6 +4,9 @@
 /**@type {import('@schemastore/eslintrc').JSONSchemaForESLintConfigurationFiles}*/
 module.exports = {
 	root: true,
+	globals: {
+		'BigInt': true
+	},
 	extends: [
 		'eslint:recommended'
 	],
