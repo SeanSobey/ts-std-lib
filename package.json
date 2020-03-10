@@ -31,11 +31,14 @@
   "dependencies": {
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.16",
-    "tslib": "^1.11.1"
+    "tslib": "^1.11.1",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@schemastore/eslintrc": "0.0.5",
+    "@types/faker": "^4.1.10",
     "@types/mocha": "^7.0.2",
+    "@types/uuid": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
@@ -46,6 +49,7 @@
     "eslint-plugin-functional": "^3.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prefer-arrow-functions": "^3.0.1",
+    "faker": "^4.1.0",
     "mocha": "^7.1.0",
     "nodemon": "^2.0.2",
     "tslint": "^6.0.0",
