@@ -644,16 +644,273 @@ Json serializer for the node URL class
 For runtime type operations
 
 **Kind**: global class  
+
+* [Type](#Type)
+    * [.of(value)](#Type.of)
+    * [.isInstanceOf(constructor, value)](#Type.isInstanceOf)
+    * [.isNull(value)](#Type.isNull)
+    * [.isUndefined(value)](#Type.isUndefined)
+    * [.isBoolean(value)](#Type.isBoolean)
+    * [.isNumber(value)](#Type.isNumber)
+    * [.isBigInt(value)](#Type.isBigInt)
+    * [.isString(value)](#Type.isString)
+    * [.isFunction(value)](#Type.isFunction)
+    * [.isSymbol(value)](#Type.isSymbol)
+    * [.isGeneratorFunction(value)](#Type.isGeneratorFunction)
+    * [.isAsyncFunction(value)](#Type.isAsyncFunction)
+    * [.isPromise(value)](#Type.isPromise)
+    * [.isProxy(value)](#Type.isProxy)
+    * [.isRegExp(value)](#Type.isRegExp)
+    * [.isIterable(value)](#Type.isIterable)
+    * [.isAsyncIterable(value)](#Type.isAsyncIterable)
+    * [.isArray(value)](#Type.isArray)
+    * [.isArrayLike(value)](#Type.isArrayLike)
+    * [.isObject(value)](#Type.isObject)
+    * [.isClass(value)](#Type.isClass)
+    * [.isPrimitive(value)](#Type.isPrimitive)
+
 <a name="Type.of"></a>
 
-### Type.of(object)
-Improved `typeof object` function, accounts for null and arrays.
+### Type.of(value)
+Improved `typeof value` function, accounts for null and arrays.
 
 **Kind**: static method of [<code>Type</code>](#Type)  
 
 | Param | Description |
 | --- | --- |
-| object | The object to test. |
+| value | The value to test. |
+
+<a name="Type.isInstanceOf"></a>
+
+### Type.isInstanceOf(constructor, value)
+Check if a value is an instance of a type
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| constructor | The type |
+| value | The value |
+
+<a name="Type.isNull"></a>
+
+### Type.isNull(value)
+Check if a value is null
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isUndefined"></a>
+
+### Type.isUndefined(value)
+Check if a value is undefined
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isBoolean"></a>
+
+### Type.isBoolean(value)
+Check if a value is a boolean
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isNumber"></a>
+
+### Type.isNumber(value)
+Check if a value is a number
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isBigInt"></a>
+
+### Type.isBigInt(value)
+Check if a value is a BigInt
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isString"></a>
+
+### Type.isString(value)
+Check if a value is a string
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The object |
+
+<a name="Type.isFunction"></a>
+
+### Type.isFunction(value)
+Check if a value is a function
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isSymbol"></a>
+
+### Type.isSymbol(value)
+Check if a value is a symbol
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isGeneratorFunction"></a>
+
+### Type.isGeneratorFunction(value)
+Check if a value is a generator function
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isAsyncFunction"></a>
+
+### Type.isAsyncFunction(value)
+Check if a value is an async function
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isPromise"></a>
+
+### Type.isPromise(value)
+Check if a value is a promise
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isProxy"></a>
+
+### Type.isProxy(value)
+Check if a value is a proxy
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isRegExp"></a>
+
+### Type.isRegExp(value)
+Check if a value is a regular expression
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isIterable"></a>
+
+### Type.isIterable(value)
+Check if a value is an iterable
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isAsyncIterable"></a>
+
+### Type.isAsyncIterable(value)
+Check if a value is an async iterable
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isArray"></a>
+
+### Type.isArray(value)
+Check if a value is an array
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isArrayLike"></a>
+
+### Type.isArrayLike(value)
+Check if a value is array like
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isObject"></a>
+
+### Type.isObject(value)
+Check if a value is a non-null object
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isClass"></a>
+
+### Type.isClass(value)
+Check if a value is a class
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
+
+<a name="Type.isPrimitive"></a>
+
+### Type.isPrimitive(value)
+Check if an object is a primitive
+
+**Kind**: static method of [<code>Type</code>](#Type)  
+
+| Param | Description |
+| --- | --- |
+| value | The value |
 
 <a name="equalTo"></a>
 

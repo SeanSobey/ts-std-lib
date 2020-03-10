@@ -20,18 +20,18 @@ export type PrimitiveType = 'undefined' | 'null' | 'boolean' | 'number' | 'bigin
 export class Type {
 
 	/**
-	 * Improved `typeof object` function, accounts for null and arrays.
-	 * @param object The object to test.
+	 * Improved `typeof value` function, accounts for null and arrays.
+	 * @param value The value to test.
 	 */
-	public static of(object: unknown): PrimitiveType {
+	public static of(value: unknown): PrimitiveType {
 
-		if (object === null) {
+		if (value === null) {
 			return 'null';
 		}
-		if (Array.isArray(object)) {
+		if (Array.isArray(value)) {
 			return 'array';
 		}
-		return typeof object;
+		return typeof value;
 	}
 
 	// /**
@@ -50,141 +50,226 @@ export class Type {
 	// 	return Reflect.getPrototypeOf(object) === Reflect.getPrototypeOf(other as any);
 	// }
 
-	public static isInstanceOf<T>(constructor: AbstractConstructor<T>, object: any): object is T {
+	/**
+	 * Check if a value is an instance of a type
+	 * @param constructor The type
+	 * @param value The value
+	 */
+	public static isInstanceOf<T>(constructor: AbstractConstructor<T>, value: any): value is T {
 
-		return object instanceof constructor;
+		return value instanceof constructor;
 	}
 
-	public static isNull(object: any): object is null {
+	/**
+	 * Check if a value is null
+	 * @param value The value
+	 */
+	public static isNull(value: any): value is null {
 
-		return object === null;
+		return value === null;
 	}
 
-	public static isUndefined(object: any): object is undefined {
+	/**
+	 * Check if a value is undefined
+	 * @param value The value
+	 */
+	public static isUndefined(value: any): value is undefined {
 
-		return object === undefined;
+		return value === undefined;
 	}
 
-	public static isBoolean(object: any): object is boolean {
+	/**
+	 * Check if a value is a boolean
+	 * @param value The value
+	 */
+	public static isBoolean(value: any): value is boolean {
 
-		return typeof object === 'boolean';
+		return typeof value === 'boolean';
 	}
 
+	/**
+	 * Check if a value is a number
+	 * @param value The value
+	 */
 	public static isNumber(value: any): value is number {
 
 		return typeof value === 'number';
 	}
 
+	/**
+	 * Check if a value is a BigInt
+	 * @param value The value
+	 */
 	public static isBigInt(value: any): value is BigInt {
 
 		return typeof value === 'bigint';
 	}
 
-	public static isString(object: any): object is string {
+	/**
+	 * Check if a value is a string
+	 * @param value The object
+	 */
+	public static isString(value: any): value is string {
 
-		return typeof object === 'string';
+		return typeof value === 'string';
 	}
 
+	/**
+	 * Check if a value is a function
+	 * @param value The value
+	 */
 	// tslint:disable-next-line:ban-types
-	public static isFunction(object: any): object is Function {
+	public static isFunction(value: any): value is Function {
 
-		return typeof object === 'function';
+		return typeof value === 'function';
 	}
 
-	public static isSymbol(object: any): object is symbol {
+	/**
+	 * Check if a value is a symbol
+	 * @param value The value
+	 */
+	public static isSymbol(value: any): value is symbol {
 
-		return typeof object === 'symbol';
+		return typeof value === 'symbol';
 	}
 
-	public static isGeneratorFunction(object: any): object is GeneratorFunction {
+	/**
+	 * Check if a value is a generator function
+	 * @param value The value
+	 */
+	public static isGeneratorFunction(value: any): value is GeneratorFunction {
 
-		return types.isGeneratorFunction(object);
+		return types.isGeneratorFunction(value);
 	}
 
-	public static isAsyncFunction(object: any): object is AsyncFunction<any> {
+	/**
+	 * Check if a value is an async function
+	 * @param value The value
+	 */
+	public static isAsyncFunction(value: any): value is AsyncFunction<any> {
 
-		return types.isAsyncFunction(object);
+		return types.isAsyncFunction(value);
 	}
 
-	public static isPromise(object: any): object is Promise<any> {
+	/**
+	 * Check if a value is a promise
+	 * @param value The value
+	 */
+	public static isPromise(value: any): value is Promise<any> {
 
-		return types.isPromise(object);
+		return types.isPromise(value);
 	}
 
-	public static isProxy(object: any): object is typeof Proxy {
+	/**
+	 * Check if a value is a proxy
+	 * @param value The value
+	 */
+	public static isProxy(value: any): value is typeof Proxy {
 
-		return types.isProxy(object);
+		return types.isProxy(value);
 	}
 
-	public static isRegExp(object: any): object is RegExp {
+	/**
+	 * Check if a value is a regular expression
+	 * @param value The value
+	 */
+	public static isRegExp(value: any): value is RegExp {
 
-		return types.isRegExp(object);
+		return types.isRegExp(value);
 	}
 
-	public static isIterable(object: any): object is Iterable<any> {
+	/**
+	 * Check if a value is an iterable
+	 * @param value The value
+	 */
+	public static isIterable(value: any): value is Iterable<any> {
 
-		if (typeof object !== 'object' || object === null) {
+		if (typeof value !== 'object' || value === null) {
 			return false;
 		}
-		return Symbol.iterator in object && typeof object[Symbol.iterator] === 'function';
+		return Symbol.iterator in value && typeof value[Symbol.iterator] === 'function';
 	}
 
-	public static isAsyncIterable(object: any): object is AsyncIterable<any> {
+	/**
+	 * Check if a value is an async iterable
+	 * @param value The value
+	 */
+	public static isAsyncIterable(value: any): value is AsyncIterable<any> {
 
-		if (typeof object !== 'object' || object === null) {
+		if (typeof value !== 'object' || value === null) {
 			return false;
 		}
-		return Symbol.asyncIterator in object && typeof (object)[Symbol.asyncIterator] === 'function';
+		return Symbol.asyncIterator in value && typeof (value)[Symbol.asyncIterator] === 'function';
 	}
 
-	public static isArray(object: unknown): object is ReadonlyArray<any> {
+	/**
+	 * Check if a value is an array
+	 * @param value The value
+	 */
+	public static isArray(value: unknown): value is ReadonlyArray<any> {
 
-		return Array.isArray(object);
+		return Array.isArray(value);
 	}
 
-	public static isArrayLike(object: unknown): object is ArrayLike<any> {
+	/**
+	 * Check if a value is array like
+	 * @param value The value
+	 */
+	public static isArrayLike(value: unknown): value is ArrayLike<any> {
 
-		if (typeof object !== 'object' || object === null) {
+		if (typeof value !== 'object' || value === null) {
 			return false;
 		}
-		return Type.hasKeysOf<ArrayLike<any>>(object, ['length']);
+		return Type.hasKeysOf<ArrayLike<any>>(value, ['length']);
 	}
 
-	public static isObject(object: unknown): object is NonNullable<object> {
+	/**
+	 * Check if a value is a non-null object
+	 * @param value The value
+	 */
+	public static isObject(value: unknown): value is NonNullable<object> {
 
-		if (typeof object !== 'object' || object === null || Array.isArray(object) || types.isRegExp(object)) {
+		if (typeof value !== 'object' || value === null || Array.isArray(value) || types.isRegExp(value)) {
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * Check if a value is a class
+	 * @param value The value
+	 */
 	// tslint:disable-next-line:ban-types
-	public static isClass(object: unknown): object is object {
+	public static isClass(value: unknown): value is object {
 
-		if (typeof object !== 'object' || object === null || Array.isArray(object) || types.isRegExp(object)) {
+		if (typeof value !== 'object' || value === null || Array.isArray(value) || types.isRegExp(value)) {
 			return false;
 		}
-		return object.constructor !== Object.prototype.constructor; // TODO: Is this the best way to test is a class?
+		return value.constructor !== Object.prototype.constructor; // TODO: Is this the best way to test is a class?
 	}
 
-	public static isPrimitive(object: unknown): object is Primitive {
+	/**
+	 * Check if an object is a primitive
+	 * @param value The value
+	 */
+	public static isPrimitive(value: unknown): value is Primitive {
 
-		if (object === null) {
+		if (value === null) {
 			return false;
 		}
-		if (object === undefined) {
+		if (value === undefined) {
 			return false;
 		}
-		return (object !== Object(object));
+		return (value !== Object(value));
 	}
 
 
-	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, typeof object[keyof T]>): object is T {
-	public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, PrimitiveType>): object is T {
-	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T> | { readonly [key: keyof T]: string }): object is T {
-	// public static hasKeysOf<T extends object>(object: unknown, expectedKeys: ReadonlyArray<keyof T>): object is T {
+	// public static hasKeysOf<T extends object>(value: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, typeof value[keyof T]>): value is T {
+	public static hasKeysOf<T extends object>(value: unknown, expectedKeys: ReadonlyArray<keyof T> | ReadonlyMap<keyof T, PrimitiveType>): value is T {
+	// public static hasKeysOf<T extends object>(value: unknown, expectedKeys: ReadonlyArray<keyof T> | { readonly [key: keyof T]: string }): value is T {
+	// public static hasKeysOf<T extends object>(value: unknown, expectedKeys: ReadonlyArray<keyof T>): value is T {
 
-		if (typeof object !== 'object' || object === null) {
+		if (typeof value !== 'object' || value === null) {
 			return false;
 		}
 		const expectedKeyMap: ReadonlyMap<keyof T, PrimitiveType | '*'> = Type.isArray(expectedKeys)
@@ -192,13 +277,13 @@ export class Type {
 			: expectedKeys;
 		// 	: new Map(Object.entries(expectedKeys));
 		for (const [expectedKey, expectedKeyType] of expectedKeyMap) {
-			if (!(expectedKey in object)) {
+			if (!(expectedKey in value)) {
 				return false;
 			}
 			if (expectedKeyType === '*') {
 				continue;
 			}
-			if (typeof (object as any)[expectedKey] !== expectedKeyType) {
+			if (typeof (value as any)[expectedKey] !== expectedKeyType) {
 				return false;
 			}
 		}
