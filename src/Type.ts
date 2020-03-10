@@ -141,7 +141,7 @@ export class Type {
 		if (typeof object !== 'object' || object === null) {
 			return false;
 		}
-		return 'length' in object && typeof (object as any).length === 'number';
+		return Type.hasKeysOf<ArrayLike<any>>(object, ['length']);
 	}
 
 	public static isObject(object: unknown): object is NonNullable<object> {

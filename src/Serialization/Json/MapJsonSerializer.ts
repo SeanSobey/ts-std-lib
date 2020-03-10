@@ -17,6 +17,6 @@ export class MapJsonSerializer<K extends Json, V extends Json> implements IJsonS
 		if (!Type.isArray(json)) {
 			throw new UnexpectedJsonError(json);
 		}
-		return new Map(json as any); // TODO!
+		return new Map(json as Iterable<[K, V]>);
 	}
 }

@@ -17,6 +17,6 @@ export class SetJsonSerializer<T extends Json> implements IJsonSerializer<Readon
 		if (!Type.isArray(json)) {
 			throw new UnexpectedJsonError(json);
 		}
-		return new Set(json as any); // TODO!
+		return new Set(json as Iterable<T>);
 	}
 }
