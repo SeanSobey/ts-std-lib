@@ -16,7 +16,8 @@
     "watch-build": "tsc --watch",
     "watch-clean": "nodemon --watch ./src -e ts --exec npm run-script clean",
     "watch-test": "nodemon --watch ./dist -e js --exec npm run-script test",
-    "watch-lint": "nodemon --watch ./src -e ts --exec npm run-script lint"
+    "watch-lint": "nodemon --watch ./src -e ts --exec npm run-script lint",
+    "docs": "jsdoc2md dist/**/*.js > API.md"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prefer-arrow-functions": "^3.0.1",
     "faker": "^4.1.0",
+    "jsdoc-to-markdown": "^5.0.3",
     "mocha": "^7.1.0",
     "nodemon": "^2.0.2",
     "tslint": "^6.0.0",

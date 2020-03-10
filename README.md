@@ -5,3 +5,5 @@
 [![NPM](https://img.shields.io/npm/v/ts-std-lib.svg)](https://www.npmjs.com/package/ts-std-lib)
 
 A standard library for typescript
+
+See the [API docs](https://github.com/SeanSobey/ts-std-lib/blob/master/API.md).

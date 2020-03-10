@@ -95,7 +95,7 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * Check if the value is null.
 	 *
-	 * @returns {boolean} True if there is a value present, otherwise false.
+	 * @returns True if there is a value present, otherwise false.
 	 */
 	public isPresent(): boolean {
 
@@ -105,7 +105,7 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * If a value is present, invoke the specified callback with the value, otherwise do nothing.
 	 *
-	 * @param {(value: T) => void} callback The callback to invoke.
+	 * @param callback The callback to invoke.
 	 */
 	public ifPresent(callback: (value: T) => void): void {
 
@@ -117,8 +117,8 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * If a value is present, performs the given callback with the value, otherwise performs the given empty-based callback.
 	 *
-	 * @param {(value: T) => void} callback The callback to be performed, if a value is present.
-	 * @param {() => void} emptyCallback The callback to be performed, if no value is present.
+	 * @param callback The callback to be performed, if a value is present.
+	 * @param emptyCallback The callback to be performed, if no value is present.
 	 */
 	public ifPresentOrElse(callback: (value: T) => void, emptyCallback: () => void): void {
 
@@ -131,8 +131,8 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * If a value is present, returns an Optional describing the value, otherwise returns an Optional produced by the supplying function.
 	 *
-	 * @param {() => IOptional<T>} supplier The supplying function that produces an Optional to be returned.
-	 * @returns {IOptional<T>} An Optional describing the value of this Optional, if a value is present, otherwise an Optional produced by the supplying function.
+	 * @param supplier The supplying function that produces an Optional to be returned.
+	 * @returns An Optional describing the value of this Optional, if a value is present, otherwise an Optional produced by the supplying function.
 	 */
 	public or(supplier: () => Optional<T>): Optional<T> {
 
@@ -145,8 +145,8 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * Return the value if not null or a default.
 	 *
-	 * @param {T} defaultValue The default value to return.
-	 * @returns {T} The value if present, otherwise return the default.
+	 * @param defaultValue The default value to return.
+	 * @returns The value if present, otherwise return the default.
 	 * @description The methods orElse and orElseGet are generally preferable to this method, as they return a substitute value if the value is absent, instead of throwing an exception.
 	 */
 	public orElse(supplier: T): T {
@@ -160,8 +160,8 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * Return the value if not null or a default via a callback, to allow for lazy loading.
 	 *
-	 * @param {() => T} callback The callback to invoke to get the default value to return.
-	 * @returns {T} The value if present, otherwise return the default.
+	 * @param callback The callback to invoke to get the default value to return.
+	 * @returns The value if present, otherwise return the default.
 	 */
 	public orElseGet(callback: () => T): T {
 
@@ -174,8 +174,8 @@ export class Optional<T> implements IEquatable<Optional<T>>, IFilterable<T>, IMa
 	/**
 	 * Return the contained value, if present, otherwise throw an exception to be created by the provided supplier.
 	 *
-	 * @param {() => Error} exceptionSupplier The callback to invoke to get the error to throw.
-	 * @returns {T} The value if present.
+	 * @param exceptionSupplier The callback to invoke to get the error to throw.
+	 * @returns The value if present.
 	 */
 	public orElseThrow(exceptionSupplier: () => Error): T {
 
