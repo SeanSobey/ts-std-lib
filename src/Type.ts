@@ -5,12 +5,18 @@ import { Primitive } from './Primitive';
 import { AsyncFunction } from './AsyncFunction';
 
 // https://nodejs.org/api/util.html#util_util_types
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
-//https://github.com/CodingFu/typeof
-//https://blog.logrocket.com/javascript-typeof-2511d53a1a62
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+// https://github.com/CodingFu/typeof
+// https://blog.logrocket.com/javascript-typeof-2511d53a1a62
 
+/**
+ * Extended types from `typeof`
+ */
 export type PrimitiveType = 'undefined' | 'null' | 'boolean' | 'number' | 'bigint' | 'string' | 'symbol' | 'function' | 'array' | 'object';
 
+/**
+ * For runtime type operations
+ */
 export class Type {
 
 	/**

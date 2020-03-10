@@ -6,6 +6,10 @@ import { IEquatable, equals } from './Equality';
 import { IInspectable, inspect } from './IInspectable';
 import { JsonSerializable, jsonProperty } from './Serialization/Json/JsonSerializable';
 
+/**
+ * A globally unique user identifer implementation
+ * @see https://www.npmjs.com/package/uuid
+ */
 export class Guid extends JsonSerializable implements IValue<string>, IEquatable<Guid>, IInspectable {
 
 	@jsonProperty('guid')

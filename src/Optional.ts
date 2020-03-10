@@ -12,6 +12,9 @@ import { IInspector } from './IInspector';
 import { DefaultInspector } from './DefaultInspector';
 import { Type } from './Type';
 
+/**
+ * Error for the optional values not set
+ */
 export class OptionalValueNotSetError extends Error {
 
 	public constructor() {

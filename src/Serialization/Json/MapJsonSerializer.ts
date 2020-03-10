@@ -3,6 +3,9 @@ import { Json, JsonArray } from './Json';
 import { Type } from '../../Type';
 import { UnexpectedJsonError } from './UnexpectedJsonError';
 
+/**
+ * Json serializer for the native Map class
+ */
 export class MapJsonSerializer<K extends Json, V extends Json> implements IJsonSerializer<ReadonlyMap<K, V>> {
 
 	public readonly [jsonSerializer] = true;

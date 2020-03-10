@@ -17,6 +17,9 @@ type ErrorValidatorMap = { readonly [index: string]: any };
 
 // See npm assertion-error, note extending strict.AssertionError does not work for Mocha!
 
+/**
+ * Custom assertion error
+ */
 class AssertionError extends AssertionErrorBase implements IJsonSerializable {
 
 	public readonly showDiff = true;
@@ -45,6 +48,9 @@ class AssertionError extends AssertionErrorBase implements IJsonSerializable {
 	}
 }
 
+/**
+ * Assertion class designed for unit testing
+ */
 export class Assert {
 
 	/**

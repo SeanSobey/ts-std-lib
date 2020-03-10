@@ -14,6 +14,9 @@ export interface JsonSerializableConstructor {
 	fromJSON<T extends JsonSerializable>(json: Json): T;
 }
 
+/**
+ * A base type to use for objects that can then be serialized to/from json using decorators
+ */
 export abstract class JsonSerializable implements IJsonSerializable {
 
 	public static fromJSON<T extends JsonSerializable>(json: Json): T {
@@ -80,6 +83,9 @@ export abstract class JsonSerializable implements IJsonSerializable {
 	}
 }
 
+/**
+ * A default implementation of IJsonSerializer
+ */
 export class DefaultSerializer implements IJsonSerializer<any> {
 
 	public readonly [jsonSerializer] = true;

@@ -3,6 +3,9 @@ import { Json, JsonArray } from './Json';
 import { Type } from '../../Type';
 import { UnexpectedJsonError } from './UnexpectedJsonError';
 
+/**
+ * Json serializer for the native Set class
+ */
 export class SetJsonSerializer<T extends Json> implements IJsonSerializer<ReadonlySet<T>> {
 
 	public readonly [jsonSerializer] = true;

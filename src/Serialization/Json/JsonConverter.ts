@@ -4,6 +4,9 @@ import { JsonSerializable, JsonSerializableConstructor } from './JsonSerializabl
 import { Reviver, Replacer } from './Json';
 import { Type } from '../../Type';
 
+/**
+ * Json converter to interchange JSON and objects using a serializer
+ */
 export class JsonConverter<T extends JsonSerializable> {
 
 	public constructor(

@@ -5,6 +5,9 @@ import { UnexpectedJsonError } from './UnexpectedJsonError';
 import { isJsonSerializable } from './IsJsonSerializable';
 import { equalTo } from '../../Equality';
 
+/**
+ * Json serializer for the native Buffer class
+ */
 export class BufferJsonSerializer implements IJsonSerializer<Buffer> {
 
 	public readonly [jsonSerializer] = true;

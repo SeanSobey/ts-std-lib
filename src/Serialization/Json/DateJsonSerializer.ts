@@ -3,6 +3,9 @@ import { Json } from './Json';
 import { Type } from '../../Type';
 import { UnexpectedJsonError } from './UnexpectedJsonError';
 
+/**
+ * Json serializer for the native Date class
+ */
 export class DateJsonSerializer implements IJsonSerializer<Date> {
 
 	public readonly [jsonSerializer] = true;

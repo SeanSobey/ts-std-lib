@@ -1,3 +1,6 @@
+/**
+ * A partial interface but n levels deep
+ */
 export type RecursivePartial<T> = {
 	[P in keyof T]?:
 	// eslint-disable-next-line functional/prefer-readonly-type

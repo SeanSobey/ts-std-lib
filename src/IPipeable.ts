@@ -1,3 +1,6 @@
+/**
+ * An object that can implement pipeable functions
+ */
 export interface IPipeable<T> {
 	/**
 	 * Runs each of the functions supplied as parameters in turn,
