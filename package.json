@@ -1,6 +1,6 @@
 {
   "name": "ts-std-lib",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A standard library for typescript",
   "main": "./dist/index",
   "types": "./dist/index.d.ts",
