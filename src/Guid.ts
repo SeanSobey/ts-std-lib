@@ -1,5 +1,5 @@
 import { InspectOptions } from 'util';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import { IValue } from './IValue';
 import { IEquatable, equals } from './Equality';
