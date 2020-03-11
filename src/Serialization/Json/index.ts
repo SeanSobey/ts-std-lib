@@ -7,6 +7,7 @@ export * from './Json';
 export * from './JsonConverter';
 export * from './JsonSerializable';
 export * from './MapJsonSerializer';
+export * from './OptionalJsonSerializer';
 export * from './SetJsonSerializer';
 export * from './UnexpectedJsonError';
 export * from './URLJsonSerializer';
