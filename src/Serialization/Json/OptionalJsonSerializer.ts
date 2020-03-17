@@ -1,7 +1,10 @@
 import { Optional } from '../../Optional';
 import { IEqualityComparer } from '../../Equality';
 import { IInspector } from '../../IInspector';
-import { IJsonSerializer, jsonSerializer, Json, DefaultSerializer, JsonSerializableConstructor, isJsonSerializer } from '../../Serialization/';
+import { IJsonSerializer, jsonSerializer } from './IJsonSerializer';
+import { Json } from './Json';
+import { isJsonSerializer } from './IsJsonSerializer';
+import { DefaultSerializer, JsonSerializableConstructor } from './JsonSerializable';
 import { Type } from '../../Type';
 
 export class OptionalJsonSerializer<T> implements IJsonSerializer<Optional<T>> {
