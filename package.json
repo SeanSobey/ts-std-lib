@@ -5,8 +5,8 @@
   "main": "./dist/index",
   "types": "./dist/index.d.ts",
   "engines": {
-    "node": "13.6.1",
-    "npm": "6.13.4"
+    "node": "16.13.0",
+    "npm": "8.1.0"
   },
   "scripts": {
     "build": "tsc --build",
