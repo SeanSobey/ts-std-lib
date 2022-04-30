@@ -68,9 +68,9 @@ describe(Type.name, () => {
 			['class', new Example(), false],
 		].forEach(([name, value, expected]) => {
 
-			describe(`given ${name}`, () => {
+			describe(`given ${String(name)}`, () => {
 
-				it(`returns ${expected}`, () => {
+				it(`returns ${String(expected)}`, () => {
 					const actual = Type.isNull(value);
 					assert.equal(actual, expected);
 				});
