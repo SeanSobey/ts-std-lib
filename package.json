@@ -33,7 +33,7 @@
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21",
     "tslib": "^1.14.1",
-    "uuid": "^7.0.3"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@schemastore/eslintrc": "0.0.5",
